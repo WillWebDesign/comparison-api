@@ -1,0 +1,26 @@
+[
+  {
+    "id": 2,
+    "name": "Iphone 17 Pro",
+    "description": "Description example",
+    "image_url": "https://example.com/",
+    "price": 4599.0,
+    "rating": 3,
+    "specs": {
+      "screen": ""
+    }
+  },
+  {
+    "name": "string_2",
+    "description": "string",
+    "image_url": "https://example.com/",
+    "price": 0.0,
+    "rating": 5.0,
+    "specs": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    },
+    "id": 3
+  }
+]
