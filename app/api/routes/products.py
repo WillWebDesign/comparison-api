@@ -28,7 +28,7 @@ responses_common = {
         "description": "Internal server error",
         "content": {
             "application/json": {
-                "example": {"detail": "Invalid data file format"}
+                "example": {"detail": "Error Information"}
             }
         },
     },
@@ -40,7 +40,7 @@ router = APIRouter(prefix="/products", tags=["Products"])
   "/",
   summary="Get all products",
   response_model=List[Product],
-  responses=responses_common
+  responses={ 500: responses_common[500] }
 )
 def get_products():
   try:
@@ -65,7 +65,7 @@ def get_product(product_id: int):
   summary="Create a product",
   response_model=Product,
   status_code=status.HTTP_201_CREATED,
-  responses=responses_common
+  responses={ 500: responses_common[500] }
 )
 def create_product(product: ProductCreate):
   try:
