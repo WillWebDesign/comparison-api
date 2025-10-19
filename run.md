@@ -1,9 +1,9 @@
-## RUN.md
+# RUN
 
 ## 1. Crear entorno virtual
 
 ```bash
-python -m venv venv
+python -m venv venv   #python3 segun instalacion
 source venv/bin/activate
 
 # Windows

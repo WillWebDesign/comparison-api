@@ -42,7 +42,9 @@ comparison-api/
 │   └── test_products.py             # Pruebas unitarias
 │
 ├── requirements.txt                 # Librerías a instalar
-└── README.md
+├── README.md
+├── RUN.md
+└── prompts.md
 ```
 
 ---
