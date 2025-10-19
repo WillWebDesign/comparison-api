@@ -22,26 +22,26 @@ Incluye persistencia en archivo JSON, validaciones con Pydantic y cobertura comp
 ```bash
 comparison-api/
 ├── app/
-│   ├── main.py                 # Punto de entrada de la aplicación
+│   ├── main.py                      # Punto de entrada de la aplicación
 │   ├── api/
 │   │   └── routes/
 │   │       └── products_router.py   # Endpoints para productos
 │   ├── core/
-│   │   └── logger.py           # Configuración de logging
+│   │   └── logger.py                # Configuración de logging
 │   ├── models/
-│   │   ├── product.py          # Modelo de datos para product con Pydantic
-│   │   └── error_response.py   # Modelo de error estándar con Pydantic
+│   │   ├── product.py               # Modelo de datos para product con Pydantic
+│   │   └── error_response.py        # Modelo de error estándar con Pydantic
 │   ├── services/
-│   │   └── products_service.py # Lógica de negocio y manejo del archivo JSON
+│   │   └── products_service.py      # Lógica de negocio y manejo del archivo JSON
 │   ├── utils/
-│   │   └── config.py           # Configuración de variables globales (.env)
+│   │   └── config.py                # Configuración de variables globales (.env)
 │   └── data/
-│       └── products.json       # Archivo de persistencia
+│       └── products.json            # Archivo de persistencia
 │
 ├── tests/
-│   └── test_products.py        # Pruebas unitarias
+│   └── test_products.py             # Pruebas unitarias
 │
-├── requirements.txt            # Librerías a instalar
+├── requirements.txt                 # Librerías a instalar
 └── README.md
 ```
 
@@ -96,11 +96,48 @@ La API estará disponible en: <http://localhost:8000>
 
 ---
 
+## Modelo y Ejemplo de producto
+
+### Modelo
+
+| Campo           | Tipo                        | Requerido | Descripción                                                                        |
+| --------------- | --------------------------- | --------- | ---------------------------------------------------------------------------------- |
+| **id**          | `int`                       | Sí        | Identificador único del producto.                                                  |
+| **name**        | `str`                       | Sí        | Nombre del producto.                                                               |
+| **description** | `str`                       | Sí        | Descripción breve del producto.                                                    |
+| **image_url**   | `HttpUrl`                   | Sí        | URL de la imagen del producto.                                                     |
+| **price**       | `float`                     | Sí        | Precio del producto (mayor que 0).                                                 |
+| **rating**      | `int` (opcional)            | No        | Calificación del producto (0 a 5). Por defecto (Null)                              |
+| **specs**       | `dict[str, str]` (opcional) | No        | Especificaciones técnicas (pantalla, chip, cámara, batería, etc.).Por defecto ({}) |
+
+### Ejemplo
+
+```json
+{
+    "id": 1,
+    "name": "iPhone 17 Pro",
+    "description": "Smartphone Apple con chip A19 Bionic, cámara triple de 48 MP y pantalla Super Retina XDR de 6.7 pulgadas.",
+    "image_url": "https://example.com/iphone17pro.jpg",
+    "price": 4599.0,
+    "rating": 5,
+    "specs": {
+      "screen": "6.7'' OLED 120Hz",
+      "chip": "Apple A19 Bionic",
+      "storage": "256 GB",
+      "camera": "48 MP + 12 MP + 12 MP",
+      "battery": "4500 mAh",
+      "os": "iOS 18"
+    }
+},
+```
+
+---
+
 ## Endpoints principales
 
-| Método   | Endpoint         | Descripción                | Respuesta esperada        |
-| -------- | ---------------- | -------------------------- | ------------------------- |
-| `GET`    | `/`              | Health Check               | `200 OK` → `String`       |
+| Método   | Endpoint             | Descripción                | Respuesta esperada        |
+| -------- | -------------------- | -------------------------- | ------------------------- |
+| `GET`    | `/`                  | Health Check               | `200 OK` → `String`       |
 | `GET`    | `/api/products/`     | Lista todos los productos  | `200 OK` → `[Product]`    |
 | `GET`    | `/api/products/{id}` | Obtiene un producto por ID | `200 OK` → `Product`      |
 | `POST`   | `/api/products/`     | Crea un nuevo producto     | `201 Created` → `Product` |
