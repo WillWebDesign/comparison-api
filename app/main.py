@@ -11,6 +11,6 @@ app = FastAPI(
 
 app.include_router(products.router, prefix="/api")
 
-@app.get("/")
+@app.get("/", summary="Health check", tags=["System"])
 def root():
   return {"message": f"Api start {settings.app_name}"}
